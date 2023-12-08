@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" modified="2023-12-08T04:00:34.526Z" agent="Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="Eqa8vOlIjBUeGsHJ_CYg" version="22.1.7" type="device">
+  <diagram name="Страница — 1" id="ObBgoOiPLlT-tprr5ani">
+    <mxGraphModel dx="880" dy="470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-1" value="&lt;h1&gt;Singleton&lt;/h1&gt;&lt;p&gt;Диаграмма паттерна &quot;Singleton&quot;&lt;br&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-2" value="SingletonClass" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="160" width="200" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-3" value="- INSTANCE: SingletonClass" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qwf5AWWSXRO3HM7fpY9b-2">
+          <mxGeometry y="26" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-4" value="- SingletonClass()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qwf5AWWSXRO3HM7fpY9b-2">
+          <mxGeometry y="52" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-5" value="+ getInstance(): SingletonClass" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qwf5AWWSXRO3HM7fpY9b-2">
+          <mxGeometry y="78" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-8" value="+ method1(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="qwf5AWWSXRO3HM7fpY9b-2">
+          <mxGeometry y="104" width="200" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-9" value="&lt;blockquote&gt;&lt;div align=&quot;justify&quot;&gt;if (INSTANCE == null) {&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;INSTANCE = new LoggerSingleton();&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;}&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;return INSTANCE;&lt;/div&gt;&lt;/blockquote&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="360" y="200" width="310" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="qwf5AWWSXRO3HM7fpY9b-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.005;entryY=0.569;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="qwf5AWWSXRO3HM7fpY9b-5" target="qwf5AWWSXRO3HM7fpY9b-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
