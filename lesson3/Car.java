@@ -97,7 +97,7 @@ public abstract class Car {
     }
 
     /**
-     * Заправить автомобиль
+     * Мойка автомобиля
      */
     public void wiping(int services) {
         if (wipingStation != null) {
