@@ -18,6 +18,12 @@ a:hover {
     text-underline-offset: 0.3rem;
 }
 
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
 .cards {
     gap: 32px;
 }
@@ -79,6 +85,7 @@ form {
     --bs-form-select-bg-img: none;
 }
 
+.navbar-toggler:focus,
 .form-select:focus,
 .form-select:focus-visible,
 .form-control:focus,
@@ -89,12 +96,22 @@ form {
 }
 
 .nav-color,
-.nav-color:hover {
+.nav-color:hover,
+.nav-color:visited {
     color: #198754;
 }
 
 .content {
     flex: 1 0 auto;
+}
+
+.submit {
+    transition: 0.3s;
+}
+
+.submit:hover {
+    background-color: #fff;
+    color: #198754;
 }
 
 footer {
@@ -115,5 +132,18 @@ footer {
 
     .carousel-img {
         width: 100%;
+    }
+
+    .about-text {
+        width: 100%;
+    }
+
+    .card-settings,
+    .product-card {
+        width: 94%;
+    }
+
+    .refer {
+        width: 94% !important;
     }
 }
