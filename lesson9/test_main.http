@@ -1,0 +1,38 @@
+# Test your FastAPI endpoints
+
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/?param=f
+Accept: application/json
+
+###
+
+POST http://127.0.0.1:8000/
+Content-Type: application/json
+
+{
+  "time": 123,
+  "temperature": 36.6,
+  "param": "c"
+}
+
+###
+
+PUT http://127.0.0.1:8000/
+Content-Type: application/json
+
+{
+  "time": 124,
+  "temperature": 36.6,
+  "param": "f"
+}
+
+###
+
+DELETE http://127.0.0.1:8000/?date=123
+Accept: application/json
+
+###
