@@ -1,13 +1,14 @@
 "use strict";
 
 const routes = {
-    "/lesson7/" : "/lesson7/pages/home.html",
-    "/lesson7/#/settings" : "/lesson7/pages/settings.html",
-    "/lesson7/#/about" : "/lesson7/pages/about.html",
-    "/lesson7/#/products" : "/lesson7/pages/products.html",
-    "/lesson7/#/contacts" : "/lesson7/pages/contacts.html",
-    "/lesson7/#/home" : "/lesson7/pages/home.html",
-    404 : "/lesson7/pages/404.html", 
+    "/" : "/pages/home.html",
+    "/index.html" : "/pages/home.html",
+    "/#/settings" : "/pages/settings.html",
+    "/#/about" : "/pages/about.html",
+    "/#/products" : "/pages/products.html",
+    "/#/contacts" : "/pages/contacts.html",
+    "/#/home" : "/pages/home.html",
+    404 : "/pages/404.html", 
 }
 
 const route = (event) => {
@@ -21,6 +22,13 @@ const handleLocation = async () => {
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((page) => page.text());
     document.getElementById("main-page").innerHTML = html;
+    console.log("handle");
+    console.log(route);
+    if(route == "/pages/products.html") {
+        const dataArticlesField = document.querySelector(".product-cards");
+
+        getRecipes(dataArticlesField);
+    }
 };
 
 window.onpopstate = handleLocation;
