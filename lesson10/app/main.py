@@ -1,4 +1,6 @@
 from fastapi import FastAPI, Body, Depends
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from .routers import client, pets
 from models import controller as mct
 from sqlalchemy.orm import Session
@@ -9,11 +11,12 @@ app = FastAPI(
 )
 app.include_router(client.router)
 app.include_router(pets.router)
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return FileResponse('static/index.html')
 
 
 @app.get("/hello/{name}")
