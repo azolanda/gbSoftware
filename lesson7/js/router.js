@@ -22,8 +22,8 @@ const handleLocation = async () => {
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((page) => page.text());
     document.getElementById("main-page").innerHTML = html;
-    console.log("handle");
-    console.log(route);
+    // console.log("handle");
+    // console.log(route);
     if(route == "/pages/products.html") {
         const dataArticlesField = document.querySelector(".product-cards");
 
@@ -34,6 +34,34 @@ const handleLocation = async () => {
 window.onpopstate = handleLocation;
 
 handleLocation();
+
+// POST
+const inputSearch = document.querySelector(".form-search");
+// console.log(inputSearch);
+const searchButton = document.querySelector(".btn-search");
+searchButton.addEventListener('click', postSearch);
+
+async function postSearch(e) {
+    e.preventDefault();
+
+    if(inputSearch == '') {
+        return;
+    }
+
+    const res = await fetch(baseUrl,
+        {
+            method: 'POST',
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({
+                    searchValue: inputSearch.value
+                }
+            )
+        });
+
+    console.log(baseUrl);
+}
 
 const setYear = () => {
     const year = new Date().getFullYear ();

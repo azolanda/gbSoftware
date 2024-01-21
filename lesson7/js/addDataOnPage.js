@@ -1,10 +1,10 @@
 "use strict";
 
 let data;
+const baseUrl = "http://localhost:8383/";
 
-async function getRecipes(dataArticlesField) {
-    const baseUrl = "http://localhost:8383/info/";
-    const res = await fetch(baseUrl + 'natalie?key=hello', {
+async function getRecipes(dataArticlesField) {    
+    const res = await fetch(baseUrl + 'info/natalie?key=hello', {
         method: 'GET'
     })
     console.log(res);
