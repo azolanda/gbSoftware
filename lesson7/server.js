@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+// let data;
 let data, searchData;
 
 app.use(express.static('./'));
@@ -43,6 +44,7 @@ app.get('/info/:dynamic', (req, res) => {
   res.status(200).json({info: data});
 });
 
+// ====================FOR SEARCH=========================
 // POST
 app.post('/',  (req, res) => {
   const {searchValue} = req.body;
@@ -63,13 +65,22 @@ app.post('/',  (req, res) => {
         
       }
       // data = results[0].name;
+      // =========================================
       searchData = results;
       // console.log(fields); // мета-данные полей 
   });
     res.status(200).send({status: 'received'});
   });
 
+app.get('/search/:dynamic', (req, res) => {
+  const {dynamic} = req.params;
+  const {key} = req.query;
+  // console.log(dynamic, key);
+  res.status(200).json({info: searchData});
+});
+
 // con.end();
+// =======================================================
 
 const port = 8383;
 const server = app.listen(port, () => console.log(`Server has started on port: ${port}`));

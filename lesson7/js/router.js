@@ -27,7 +27,7 @@ const handleLocation = async () => {
     if(route == "/pages/products.html") {
         const dataArticlesField = document.querySelector(".product-cards");
 
-        getRecipes(dataArticlesField);
+        getData(dataArticlesField);
     }
 };
 
@@ -35,33 +35,9 @@ window.onpopstate = handleLocation;
 
 handleLocation();
 
-// POST
-const inputSearch = document.querySelector(".form-search");
-// console.log(inputSearch);
-const searchButton = document.querySelector(".btn-search");
-searchButton.addEventListener('click', postSearch);
+// ====================FOR SEARCH=========================
 
-async function postSearch(e) {
-    e.preventDefault();
-
-    if(inputSearch == '') {
-        return;
-    }
-
-    const res = await fetch(baseUrl,
-        {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify({
-                    searchValue: inputSearch.value
-                }
-            )
-        });
-
-    console.log(baseUrl);
-}
+// =======================================================
 
 const setYear = () => {
     const year = new Date().getFullYear ();

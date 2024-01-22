@@ -3,35 +3,45 @@
 let data;
 const baseUrl = "http://localhost:8383/";
 
-async function getRecipes(dataArticlesField) {    
+async function getData(dataArticlesField) {    
     const res = await fetch(baseUrl + 'info/natalie?key=hello', {
         method: 'GET'
     })
     console.log(res);
 
     data = await res.json();
-    for (let i = 0; i < data.info.length; i++) {
-        const src = "./img/" + data.info[i].picture;
-        
-        let stringInnerHTML = `<div class="card product-card col-xl-3 col-md-4 col-sm-6" data-id = ${data.info[i].id}>
-        <img src=${src} class="card-img-top" alt="article-picture">
-        <div class="card-body card-article">
-            <h5 class="card-title">${data.info[i].name}</h5>
-            <p class="card-text">`;
+    renderData(data, dataArticlesField);
+}
 
-            let aboutTextLength = 100;
-            if (aboutTextLength > data.info[i].about.length) {
-                aboutTextLength = data.info[i].about.length;
-            }
+function renderData(dataForRender, elementForDataRender) {
+    console.log(dataForRender);
+    if(dataForRender.info === undefined || dataForRender.info.length == 0) {
+        elementForDataRender.innerHTML = "<p>К сожалению, информация не найдена...</p>";
+    } else {
+        for (let i = 0; i < dataForRender.info.length; i++) {
+            const src = "./img/" + dataForRender.info[i].picture;
             
-            stringInnerHTML+= textWithParagraphs(data.info[i], aboutTextLength);
-            
-            stringInnerHTML+= `...</p>
-                        <button data-btn_id = ${data.info[i].id} class="btn btn-primary btn-articles" onclick = "readArticle(this)">Читать далее</button>
-                    </div>
-                </div>`;
-            dataArticlesField.innerHTML+= stringInnerHTML;
+            let stringInnerHTML = `<div class="card product-card col-xl-3 col-md-4 col-sm-6" data-id = ${dataForRender.info[i].id}>
+            <img src=${src} class="card-img-top" alt="article-picture">
+            <div class="card-body card-article">
+                <h5 class="card-title">${dataForRender.info[i].name}</h5>
+                <p class="card-text">`;
+
+                let aboutTextLength = 100;
+                if (aboutTextLength > dataForRender.info[i].about.length) {
+                    aboutTextLength = dataForRender.info[i].about.length;
+                }
+                
+                stringInnerHTML+= textWithParagraphs(dataForRender.info[i], aboutTextLength);
+                
+                stringInnerHTML+= `...</p>
+                            <button data-btn_id = ${dataForRender.info[i].id} class="btn btn-primary btn-articles" onclick = "readArticle(this)">Читать далее</button>
+                        </div>
+                    </div>`;
+                    elementForDataRender.innerHTML+= stringInnerHTML;
+        }
     }
+    
 }
 
 function readArticle(onclickButton) {
@@ -39,7 +49,7 @@ function readArticle(onclickButton) {
     
     let dataArticle;
     const dataId = onclickButton.dataset.btn_id;
-    console.log(data.info);
+    // console.log(data.info);
 
     data.info.forEach(element => {
         if(element.id == dataId) {
