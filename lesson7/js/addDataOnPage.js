@@ -21,7 +21,7 @@ function renderData(dataForRender, elementForDataRender) {
         for (let i = 0; i < dataForRender.info.length; i++) {
             const src = "./img/" + dataForRender.info[i].picture;
             
-            let stringInnerHTML = `<div class="card product-card col-xl-3 col-md-4 col-sm-6" data-id = ${dataForRender.info[i].id}>
+            let stringInnerHTML = `<div class="card product-card col-xl-3 col-md-4 col-sm-6 dark__theme" data-id = ${dataForRender.info[i].id}>
             <img src=${src} class="card-img-top" alt="article-picture">
             <div class="card-body card-article">
                 <h5 class="card-title">${dataForRender.info[i].name}</h5>
@@ -35,7 +35,7 @@ function renderData(dataForRender, elementForDataRender) {
                 stringInnerHTML+= textWithParagraphs(dataForRender.info[i], aboutTextLength);
                 
                 stringInnerHTML+= `...</p>
-                            <button data-btn_id = ${dataForRender.info[i].id} class="btn btn-primary btn-articles" onclick = "readArticle(this)">Читать далее</button>
+                            <button data-btn_id = ${dataForRender.info[i].id} class="btn btn-primary btn-articles btn-dark" onclick = "readArticle(this)">Читать далее</button>
                         </div>
                     </div>`;
                     elementForDataRender.innerHTML+= stringInnerHTML;
@@ -61,7 +61,7 @@ function readArticle(onclickButton) {
     const dataArticlesFieldForPush = onclickButton.closest(".product-cards");
     const src = "./img/" + dataArticle.picture;
 
-    let stringInnerHTML = `<div class = "about__popup">
+    let stringInnerHTML = `<div class = "about__popup dark__theme">
     <div class = "container">
         <div class = "article__header mb-4 mt-5">
             <h1>${dataArticle.name}</h1>

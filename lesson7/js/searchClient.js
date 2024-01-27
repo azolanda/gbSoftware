@@ -9,7 +9,7 @@ searchButton.addEventListener('click', postSearch);
 async function postSearch(e) {
     e.preventDefault();
 
-    if(inputSearch == '') {
+    if(inputSearch.value == '') {
         return;
     }
 
@@ -20,13 +20,19 @@ async function postSearch(e) {
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify({
-                    searchValue: inputSearch.value
-                }
-            )
-        });
+                searchValue: inputSearch.value
+            })
+        });  
 
-    console.log(baseUrl);
-    getSearchData(document.querySelector(".product-cards"));
+    const elementForPushSearchResults = document.querySelector("#main-box");
+
+    if(document.querySelector(".product-cards") != null) {
+        elementForPushSearchResults.querySelector("h1").innerHTML = "Результаты поиска";
+        getSearchData(document.querySelector(".product-cards"));
+    } else {
+        elementForPushSearchResults.innerHTML = '<h1 class="mt-5 mb-4">Результаты поиска</h1><div class = "cards product-cards row justify-content-center"></div>';
+        getSearchData(document.querySelector(".product-cards"));
+    }
 }
 
 async function getSearchData(dataArticlesField) {    
@@ -37,5 +43,6 @@ async function getSearchData(dataArticlesField) {
 
     const searchData = await res.json();
     dataArticlesField.innerHTML = "";
+    inputSearch.value = "";
     renderData(searchData , dataArticlesField);
 }

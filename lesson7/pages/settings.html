@@ -1,4 +1,4 @@
-<div class="mt-5" style="text-align: center;">
+<div id="main-box" class="mt-5" style="text-align: center;">
     <h1 class="mt-5 mb-4">Настройки</h1>
 
     <div class="card card-settings text-center mb-5">
@@ -7,18 +7,23 @@
                 <li class="nav-item">
                     <a class="nav-link active nav-color" aria-current="true" href="#">Setting1</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link nav-color" href="#">Setting2</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link nav-color" href="#">Setting3</a>
-                </li>
+                </li> -->
             </ul>
         </div>
-        <div class="card-body">
+        <div class="card-body dark__theme">
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <label class="toggle">
+                <span class="toggle-label">Включить темную тему</span>
+                <input class="toggle-checkbox theme-check" type="checkbox" checked>
+                <div class="toggle-switch"></div>
+            </label>
+            <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
         </div>
     </div>
 </div>
