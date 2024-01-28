@@ -290,8 +290,8 @@ footer {
 }
 
 /* ============BIG FONT=========== */
-.body__big-font {
-    font-size: 1.2rem !important;
+.navbar-brand__big-font {
+    font-size: 1.3rem !important;
 }
 
 @media(max-width: 960px) {
