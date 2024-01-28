@@ -31,6 +31,7 @@ const handleLocation = async () => {
 
     if (route == "/pages/settings.html") {
         themeToggle();
+        fontToggle();
     }
 };
 

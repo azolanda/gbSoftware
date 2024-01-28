@@ -5,7 +5,8 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active nav-color" aria-current="true" href="#">Setting1</a>
+                    <!-- <a class="nav-link active nav-color" aria-current="true" href="#">Стиль</a> -->
+                    <p class="nav-link active nav-color">Стиль</p>
                 </li>
                 <!-- <li class="nav-item">
                     <a class="nav-link nav-color" href="#">Setting2</a>
@@ -16,13 +17,27 @@
             </ul>
         </div>
         <div class="card-body dark__theme">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <label class="toggle">
-                <span class="toggle-label">Включить темную тему</span>
-                <input class="toggle-checkbox theme-check" type="checkbox" checked>
-                <div class="toggle-switch"></div>
-            </label>
+            <h5 class="card-title">Удобные настройки</h5>
+            <p class="card-text  settings__text">В данном разделе Вы можете поменять настройки стиля отображения
+                приложения.</p>
+            <ul class="settings__toggles">
+                <li class="settings__toggles-item">
+                    <label class="toggle">
+                        <span class="toggle-label">Включить темную тему</span>
+                        <input class="toggle-checkbox theme-check" type="checkbox" checked>
+                        <div class="toggle-switch"></div>
+                    </label>
+                </li>
+                <li class="settings__toggles-item">
+                    <label class="toggle">
+                        <span class="toggle-label">Увеличить размер шрифта</span>
+                        <input class="toggle-checkbox font-check" type="checkbox" checked>
+                        <div class="toggle-switch"></div>
+                    </label>
+                </li>
+            </ul>
+
+            <br>
             <a href="#" class="btn btn-primary btn-dark">Go somewhere</a>
         </div>
     </div>
