@@ -33,6 +33,10 @@ const handleLocation = async () => {
         themeToggle();
         fontToggle();
     }
+
+    if (route == "/pages/contacts.html") {
+        contactsForm();
+    }
 };
 
 window.onpopstate = handleLocation;

@@ -1,24 +1,29 @@
 <div id="main-box" class="mt-5" style="text-align: center;">
     <h1 class="mt-5 mb-4">Contacts</h1>
 
-    <form class="mb-5 contacts__form">
+    <form action="../sendmail" method="post" enctype="multipart/form-data" id="contact__form"
+        class="mb-5 contacts__form">
         <fieldset>
             <legend>Contact Us</legend>
-            <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">Your name</label>
-                <input type="text" id="disabledTextInput" class="form-control" placeholder="Alissa Smith">
+            <div class="form__item mb-3">
+                <label for="name" class="form-label">Your name</label>
+                <input type="text" id="name" class="_required _name form-control" placeholder="Alissa Smith"
+                    tabindex="1" name="name" maxlength="100">
             </div>
-            <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">Your mail</label>
-                <input type="email" id="disabledTextInput" class="form-control" placeholder="yourmail@mail.ru">
+            <div class="form__item mb-3">
+                <label for="email" class="form-label">Your mail</label>
+                <input type="email" id="email" class="_required _email form-control" placeholder="yourmail@mail.ru"
+                    tabindex="2" name="email" maxlength="40">
             </div>
-            <div class="mb-3">
-                <label for="disabledSelect" class="form-label">Write your message</label>
-                <textarea id="disabledSelect" class="form-select"></textarea>
+            <div class="form__item mb-3">
+                <label for="comments_id" class="form-label">Write your message</label>
+                <textarea id="comments_id" class="_required _comments form-select" tabindex="3" name="comments"
+                    maxlength="500"></textarea>
             </div>
             <div class="mb-3">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck">
+                    <input class="_required form-check-input" type="checkbox" id="disabledFieldsetCheck" name="check"
+                        value="yes" checked="">
                     <label class="form-check-label" for="disabledFieldsetCheck">
                         Check this
                     </label>
