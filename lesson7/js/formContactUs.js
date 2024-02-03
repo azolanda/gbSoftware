@@ -32,7 +32,6 @@ function contactsForm() {
                 let result = await response.json();
 
                 setTimeout(() => {
-                    console.log(result.message);
                     if (result.message == "received") {
                         // let successMess = document.getElementById('contact__form__message');
                         // successMess.classList.remove('no-visible');
@@ -55,7 +54,12 @@ function contactsForm() {
     function formValidate(form) {
         let error = 0;
 
-        let formRequired = document.querySelectorAll('._required');
+        const formRequired = document.querySelectorAll('._required');
+        const companyField = document.getElementById('company_field_id');
+
+        if (companyField.value.length > 0) {
+            error++;
+        }
 
         for (let i = 0; i < formRequired.length; i++) {
             let input = formRequired[i];

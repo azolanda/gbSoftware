@@ -61,7 +61,6 @@ app.post('/', (req, res) => {
   con.query("SELECT * FROM web_app_db.about_cats WHERE `name` LIKE ? OR `about` LIKE ?", [`%${searchValue}%`, `%${searchValue}%`],
     function (err, results, fields) {
       console.log(err);
-      console.log("==========================================")
       // console.log(`SELECT * FROM web_app_db.about_cats WHERE name LIKE '%${searchValue}%' OR about LIKE '%${searchValue}%'`);
       // console.log(results[0].name); // собственно данные
       // -------------------------------
@@ -115,8 +114,7 @@ const upload = multer();
 // }));
 let formDataFields = null;
 app.post('/sendmail', upload.none(), (req, res) => {
-
-  console.log(req.body);
+  // console.log(req.body);
   if (Object.keys(req.body).length === 0) {
     return res.status(400).send({
       message: 'failed'
@@ -127,8 +125,15 @@ app.post('/sendmail', upload.none(), (req, res) => {
     name,
     email,
     comments,
-    check
+    check,
+    company_field
   } = req.body;
+
+  if (company_field.length > 0) {
+    return res.status(400).send({
+      message: 'failed'
+    });
+  }
 
   formDataFields = {
     'name': name,
@@ -161,17 +166,17 @@ async function sendEmail() {
     auth: {
       // user: testEmailAccount.user,
       // pass: testEmailAccount.pass,
-      user: _usermail,
-      pass: _userpass,
+      user: user_login,
+      pass: user_pass,
     }
   });
 
   // Set up email data
   let mailOptions = {
-    from: _usermail,
-    to: _destinationmail,
+    from: user_login,
+    to: destination_mail,
     subject: 'сообщение из приложения CatsRoom',
-    text: `Имя пользователя: ${formDataFields.name}, e-mail: ${formDataFields.email}, Комментарий: ${formDataFields.comments}, Согласие на обработку персональных данных: ${formDataFields.check}`
+    text: `Имя пользователя: ${formDataFields.name} \ne-mail: ${formDataFields.email} \nКомментарий: ${formDataFields.comments} \nСогласие на обработку персональных данных: ${formDataFields.check}`
   };
 
   // Send email
@@ -180,10 +185,8 @@ async function sendEmail() {
   console.log('Message sent: %s', info.messageId);
 }
 
-// Execute the function
-// sendEmail().catch(console.error);
 app.get('/sendmail', (req, res) => {
-  res.send('Hello World!')
+  res.send('Sending mail..')
 });
 // =============================================
 

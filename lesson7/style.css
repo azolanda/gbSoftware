@@ -108,9 +108,6 @@ a:hover {
     display: none;
 }
 
-/* .display-block {
-    display: block;
-} */
 .article__header {
     display: flex;
     justify-content: space-between;
@@ -132,9 +129,6 @@ a:hover {
 
 .close__icon {
     cursor: pointer;
-    /* position: absolute;
-    right: 5vw;
-    top: 3vh; */
 }
 
 .contacts__form {
@@ -160,6 +154,15 @@ a:hover {
     border-color: #198754;
     outline: 0;
     box-shadow: 0 0 0 .2rem rgba(13, 253, 85, 0.25);
+}
+
+input:hover,
+textarea:hover {
+    border-color: #198754;
+}
+
+.form-check-input {
+    cursor: pointer;
 }
 
 .nav-color,
@@ -294,13 +297,20 @@ footer {
     font-size: 1.3rem !important;
 }
 
+@media(max-width: 991px) {
+    .about-project__card {
+        max-width: 80% !important;
+    }
+
+}
+
 @media(max-width: 960px) {
     .fugure__blockquote {
         max-width: 80%;
     }
 }
 
-@media(max-width: 575px) {
+@media(max-width: 767px) {
 
     .carousel-control-next,
     .carousel-control-prev {
@@ -315,6 +325,23 @@ footer {
         width: 100%;
     }
 
+    .card__inner-wrapper {
+        flex-wrap: nowrap;
+    }
+
+    .row>* {
+        flex-shrink: unset;
+        width: unset;
+    }
+
+    .about-project__card {
+        max-width: 100% !important;
+    }
+
+}
+
+@media(max-width: 575px) {
+
     .card-settings,
     .product-card {
         width: 94%;
@@ -326,5 +353,54 @@ footer {
 
     .fugure__blockquote {
         max-width: 90%;
+    }
+
+    .card__inner-wrapper {
+        flex-wrap: nowrap;
+    }
+
+    .card__img-wrapper {
+        max-width: 30%;
+    }
+
+    .about-project__card-text {
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 510px) {
+    .card__inner-wrapper {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+    .card__img-wrapper {
+        max-width: 100%;
+        padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+        padding-top: 0;
+    }
+
+    .img-fluid {
+        margin: 0 auto;
+    }
+
+    .rounded-start {
+        border-bottom-left-radius: unset !important;
+        border-top-left-radius: unset !important;
+    }
+
+    .card-title,
+    .about-project__links {
+        text-align: center;
+    }
+
+    .about-project__card-text {
+        text-align: center;
+    }
+}
+
+@media (max-width: 320px) {
+    .card__img-wrapper {
+        padding: 0;
     }
 }

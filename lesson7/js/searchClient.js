@@ -9,24 +9,23 @@ searchButton.addEventListener('click', postSearch);
 async function postSearch(e) {
     e.preventDefault();
 
-    if(inputSearch.value == '') {
+    if (inputSearch.value == '') {
         return;
     }
 
-    const res = await fetch(baseUrl,
-        {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify({
-                searchValue: inputSearch.value
-            })
-        });  
+    const res = await fetch(baseUrl, {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            searchValue: inputSearch.value
+        })
+    });
 
     const elementForPushSearchResults = document.querySelector("#main-box");
 
-    if(document.querySelector(".product-cards") != null) {
+    if (document.querySelector(".product-cards") != null) {
         elementForPushSearchResults.querySelector("h1").innerHTML = "Результаты поиска";
         getSearchData(document.querySelector(".product-cards"));
     } else {
@@ -35,7 +34,7 @@ async function postSearch(e) {
     }
 }
 
-async function getSearchData(dataArticlesField) {    
+async function getSearchData(dataArticlesField) {
     const res = await fetch(baseUrl + 'search/natalie?key=search', {
         method: 'GET'
     })
@@ -43,6 +42,8 @@ async function getSearchData(dataArticlesField) {
 
     const searchData = await res.json();
     dataArticlesField.innerHTML = "";
-    inputSearch.value = "";
-    renderData(searchData , dataArticlesField);
+    setTimeout(() => {
+        inputSearch.value = "";
+    }, 250);
+    renderData(searchData, dataArticlesField);
 }
