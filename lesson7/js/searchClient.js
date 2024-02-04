@@ -44,6 +44,6 @@ async function getSearchData(dataArticlesField) {
     dataArticlesField.innerHTML = "";
     setTimeout(() => {
         inputSearch.value = "";
-    }, 250);
+    }, 200);
     renderData(searchData, dataArticlesField);
 }

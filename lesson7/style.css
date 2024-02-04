@@ -97,10 +97,12 @@ a:hover {
     background: #ffffff;
     top: 56px;
     left: 0;
-    width: 100%;
+    width: 100% !important;
     height: 100%;
-    z-index: 1000;
+    /* z-index: 1000; */
     overflow-y: scroll;
+    padding-right: 0;
+    padding-left: 0;
     padding-bottom: 5rem;
 }
 
@@ -125,6 +127,10 @@ a:hover {
 
 .text-article:last-child {
     align-self: flex-start;
+}
+
+.article__source {
+    display: flex;
 }
 
 .close__icon {
@@ -366,6 +372,7 @@ footer {
     .about-project__card-text {
         margin-bottom: 0.5rem;
     }
+
 }
 
 @media (max-width: 510px) {

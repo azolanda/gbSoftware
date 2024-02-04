@@ -5,7 +5,7 @@ const routes = {
     "/index.html": "/pages/home.html",
     "/#/settings": "/pages/settings.html",
     "/#/about": "/pages/about.html",
-    "/#/products": "/pages/products.html",
+    "/#/articles": "/pages/articles.html",
     "/#/contacts": "/pages/contacts.html",
     "/#/home": "/pages/home.html",
     404: "/pages/404.html",
@@ -23,7 +23,7 @@ const handleLocation = async () => {
     const html = await fetch(route).then((page) => page.text());
     document.getElementById("main-page").innerHTML = html;
 
-    if (route == "/pages/products.html") {
+    if (route == "/pages/articles.html") {
         const dataArticlesField = document.querySelector(".product-cards");
 
         getData(dataArticlesField);

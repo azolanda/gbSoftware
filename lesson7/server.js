@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// let data;
+
 let data, searchData;
 
 app.use(express.static('./'));

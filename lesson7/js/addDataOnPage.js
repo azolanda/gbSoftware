@@ -3,66 +3,68 @@
 let data;
 const baseUrl = "http://localhost:8383/";
 
-async function getData(dataArticlesField) {    
+async function getData(dataArticlesField) {
     const res = await fetch(baseUrl + 'info/natalie?key=hello', {
         method: 'GET'
     })
-    console.log(res);
+    // console.log(res);
 
     data = await res.json();
     renderData(data, dataArticlesField);
 }
 
 function renderData(dataForRender, elementForDataRender) {
-    console.log(dataForRender);
-    if(dataForRender.info === undefined || dataForRender.info.length == 0) {
+    // console.log(dataForRender);
+    if (dataForRender.info === undefined || dataForRender.info.length == 0) {
         elementForDataRender.innerHTML = "<p>К сожалению, информация не найдена...</p>";
     } else {
         for (let i = 0; i < dataForRender.info.length; i++) {
             const src = "./img/" + dataForRender.info[i].picture;
-            
+
             let stringInnerHTML = `<div class="card product-card col-xl-3 col-md-4 col-sm-6 dark__theme" data-id = ${dataForRender.info[i].id}>
             <img src=${src} class="card-img-top" alt="article-picture">
             <div class="card-body card-article">
                 <h5 class="card-title">${dataForRender.info[i].name}</h5>
                 <p class="card-text">`;
 
-                let aboutTextLength = 100;
-                if (aboutTextLength > dataForRender.info[i].about.length) {
-                    aboutTextLength = dataForRender.info[i].about.length;
-                }
-                
-                stringInnerHTML+= textWithParagraphs(dataForRender.info[i], aboutTextLength);
-                
-                stringInnerHTML+= `...</p>
+            let aboutTextLength = 100;
+            if (aboutTextLength > dataForRender.info[i].about.length) {
+                aboutTextLength = dataForRender.info[i].about.length;
+            }
+
+            stringInnerHTML += textWithParagraphs(dataForRender.info[i], aboutTextLength);
+
+            stringInnerHTML += `...</p>
                             <button data-btn_id = ${dataForRender.info[i].id} class="btn btn-primary btn-articles btn-dark" onclick = "readArticle(this)">Читать далее</button>
                         </div>
                     </div>`;
-                    elementForDataRender.innerHTML+= stringInnerHTML;
+            elementForDataRender.innerHTML += stringInnerHTML;
         }
     }
-    
+
 }
 
 function readArticle(onclickButton) {
     document.body.style.overflow = "hidden";
-    
+
     let dataArticle;
     const dataId = onclickButton.dataset.btn_id;
     // console.log(data.info);
 
     data.info.forEach(element => {
-        if(element.id == dataId) {
+        if (element.id == dataId) {
             dataArticle = element;
-            console.log(dataArticle);
+            // console.log(dataArticle);
         }
     });
-    
+
     const dataArticlesFieldForPush = onclickButton.closest(".product-cards");
     const src = "./img/" + dataArticle.picture;
 
+    const scrollBarWidth = getScrollBarWidth();
+
     let stringInnerHTML = `<div class = "about__popup dark__theme">
-    <div class = "container">
+    <div class = "container about__popup-container">
         <div class = "article__header mb-4 mt-5">
             <h1>${dataArticle.name}</h1>
             <svg class="close__icon" onclick = "closeArticle()" width="1.2em" height="1.2em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -72,15 +74,39 @@ function readArticle(onclickButton) {
         <div class="article__img article__img-big mb-4">
             <img src=${src} class="card-img-top" alt="article-picture">
         </div>
-        <div class="card-body pb-5">
+        <div class="card-body pb-4">
             <p class="card-text text-article">`;
-    
-    stringInnerHTML+= textWithParagraphs(dataArticle, dataArticle.about.length);
-    stringInnerHTML+= `</p>
+
+    stringInnerHTML += textWithParagraphs(dataArticle, dataArticle.about.length);
+    stringInnerHTML += `</p>
+            </div>
+            <div class = "article__source mb-5">
+                <a href=${dataArticle.source}>Источник</a>
             </div>
         </div>
     </div>`
-    dataArticlesFieldForPush.innerHTML+= stringInnerHTML;
+    dataArticlesFieldForPush.innerHTML += stringInnerHTML;
+
+    const aboutPopupContainer = document.querySelector(".about__popup-container");
+
+    const popupPaddingLeft = parseFloat(window.getComputedStyle(aboutPopupContainer).paddingLeft) + Math.floor(scrollBarWidth / 2) + 'px';
+
+    const popupPaddingRight = parseFloat(window.getComputedStyle(aboutPopupContainer).paddingRight) - Math.floor(scrollBarWidth / 2);
+
+    aboutPopupContainer.style.paddingLeft = popupPaddingLeft;
+
+    if (popupPaddingRight > 0) {
+        aboutPopupContainer.style.paddingRight = popupPaddingRight + 'px';
+    }
+}
+
+function getScrollBarWidth() {
+    const el = document.createElement("div");
+    el.style.cssText = "overflow:scroll; visibility:hidden; position:absolute;";
+    document.body.appendChild(el);
+    let width = el.offsetWidth - el.clientWidth;
+    el.remove();
+    return width;
 }
 
 function closeArticle() {
@@ -91,14 +117,14 @@ function closeArticle() {
 
 function textWithParagraphs(data, length) {
     let strInnerHTML = "";
-    for (let n = 0; n < length; n++) {        
-        if(data.about[n] === "_") {
-            strInnerHTML+= `</p><p class="card-text text-article">`;
+    for (let n = 0; n < length; n++) {
+        if (data.about[n] === "_") {
+            strInnerHTML += `</p><p class="card-text text-article">`;
 
         } else {
-            strInnerHTML+= `${data.about[n]}`;
+            strInnerHTML += `${data.about[n]}`;
         }
-        
+
     }
     return strInnerHTML;
 }

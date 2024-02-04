@@ -9,7 +9,7 @@ navbarToggler.addEventListener('click', function () {
         if (navbarSupportedContent.classList.contains('show') && e.target != formSearch) {
             setTimeout(() => {
                 navbarSupportedContent.classList.remove('show');
-            }, 250);
+            }, 200);
         }
     });
 })
