@@ -45,7 +45,7 @@ handleLocation();
 
 const setYear = () => {
     const year = new Date().getFullYear();
-    document.querySelector(".data-year").innerHTML = year;
+    document.querySelector(".data-year").innerHTML += year;
 }
 
 setYear();
