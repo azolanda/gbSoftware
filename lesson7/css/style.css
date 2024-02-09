@@ -98,12 +98,13 @@ a:hover {
     top: 56px;
     left: 0;
     width: 100% !important;
-    height: 100%;
+    height: calc(100% - 56px);
+    /* height: 100%; */
     /* z-index: 1000; */
     overflow-y: scroll;
     padding-right: 0;
     padding-left: 0;
-    padding-bottom: 5rem;
+    /* padding-bottom: 5rem; */
 }
 
 .display-none {
@@ -129,9 +130,9 @@ a:hover {
     align-self: flex-start;
 }
 
-.article__source {
+/* .article__source {
     display: flex;
-}
+} */
 
 .close__icon {
     cursor: pointer;

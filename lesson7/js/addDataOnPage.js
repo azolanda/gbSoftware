@@ -59,12 +59,13 @@ function readArticle(onclickButton) {
     });
 
     const dataArticlesFieldForPush = onclickButton.closest(".product-cards");
+    const footer = document.querySelector("footer");
     const src = "./img/" + dataArticle.picture;
 
     const scrollBarWidth = getScrollBarWidth();
 
     let stringInnerHTML = `<div class = "about__popup dark__theme">
-    <div class = "container about__popup-container">
+    <div class = "container about__popup-container pb-3">
         <div class = "article__header mb-4 mt-5">
             <h1>${dataArticle.name}</h1>
             <svg class="close__icon" onclick = "closeArticle()" width="1.2em" height="1.2em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -81,10 +82,11 @@ function readArticle(onclickButton) {
     stringInnerHTML += `</p>
             </div>
             <div class = "article__source mb-5">
-                <a href=${dataArticle.source}>Источник</a>
+                <a href=${dataArticle.source} target="_blank">Источник</a>
             </div>
-        </div>
-    </div>`
+        </div>`
+    stringInnerHTML += footer.outerHTML;
+    stringInnerHTML += `</div>`;
     dataArticlesFieldForPush.innerHTML += stringInnerHTML;
 
     const aboutPopupContainer = document.querySelector(".about__popup-container");
