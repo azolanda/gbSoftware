@@ -142,12 +142,19 @@ app.post('/sendmail', upload.none(), (req, res) => {
     'check': check,
   }
 
-  // console.log(name);
-  res.status(200).send({
-    message: 'received'
-  });
+  sendEmail()
+    .then(result => {
+      return res.status(200).send({
+        message: 'received'
+      });
+    })
+    .catch(err => {
+      console.error;
+      return res.status(400).send({
+        message: 'failed'
+      });
+    });
 
-  sendEmail().catch(console.error);
 });
 
 // ====================SEND MAIL FUNCTION=========================
@@ -212,39 +219,3 @@ process.on('exit', () => {
     console.log("Server has stopped")
   });
 });
-
-// process.on('close', () => {
-//   con.end();
-//   console.log(`Server has closed (exit) on port: ${port}`);
-// }); 
-
-// import mysql from "mysql";
-
-/**const mysql = require('mysql');
-const con = mysql.createConnection({
-  host: "localhost",
-  user: "sqluser",
-  password: "password",
-  database: "web_app_db"
-});
-
-// con.connect(function(err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
-// const textResult = "results";
-//     module.exports.text = textResult;
-// let text = "";
-// let textResult;
-con.query("SELECT name FROM web_app_db.recipes WHERE id = 2",
-  function(err, results, fields) {
-    // textResult = results;
-    // export textResult;
-    // module.exports.text = textResult;
-    // module.exports.textResult = results;
-    console.log(err);
-    console.log(results[0].name); // собственно данные
-    data = results[0].name;
-    // console.log(fields); // мета-данные полей 
-});
-con.end();*/

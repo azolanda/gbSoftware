@@ -76,6 +76,10 @@ a:hover {
     display: flex;
 }
 
+.btn {
+    transition: background-color .3s;
+}
+
 .btn-primary {
     --bs-btn-bg: #198754;
     --bs-btn-border-color: #198754;
@@ -85,6 +89,13 @@ a:hover {
     --bs-btn-active-border-color: #198754;
     --bs-btn-disabled-bg: #198754;
     --bs-btn-disabled-border-color: #198754;
+}
+
+.btn-settings:hover,
+.btn-articles:hover {
+    text-decoration: none;
+    background-color: #26714d;
+    border-color: #26714d;
 }
 
 .product-card {
@@ -163,6 +174,10 @@ a:hover {
     box-shadow: 0 0 0 .2rem rgba(13, 253, 85, 0.25);
 }
 
+.form-select:focus {
+    color: var(--bs-body-color);
+}
+
 input:hover,
 textarea:hover {
     border-color: #198754;
@@ -189,6 +204,35 @@ textarea:hover {
 .submit:hover {
     background-color: #fff;
     color: #198754;
+}
+
+.message__popup {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1e793933;
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.message__box {
+    background-color: #fff;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #198754b0;
+}
+
+.btn__close {
+    align-self: center;
 }
 
 footer {
@@ -405,10 +449,23 @@ footer {
     .about-project__card-text {
         text-align: center;
     }
+
+    .message__popup {
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+    }
+
+    .message__box {
+        padding: 20px;
+    }
 }
 
 @media (max-width: 320px) {
     .card__img-wrapper {
         padding: 0;
+    }
+
+    .message__box {
+        padding: 16px;
     }
 }

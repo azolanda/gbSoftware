@@ -19,6 +19,11 @@ function contactsForm() {
 
         let formData = new FormData(form);
 
+        const mainBox = document.querySelector('#main-box');
+        const messagePopup = document.createElement('div');
+        messagePopup.classList.add('message__popup');
+        let messagePopupInnerHTML = '<div class = "message__box">';
+
         if (error === 0) {
             // отправка формы
             form.classList.add('_sending');
@@ -31,24 +36,32 @@ function contactsForm() {
             if (response.ok) {
                 let result = await response.json();
 
-                setTimeout(() => {
-                    if (result.message == "received") {
-                        // let successMess = document.getElementById('contact__form__message');
-                        // successMess.classList.remove('no-visible');
-                        form.classList.remove('_sending');
-                        form.reset();
-                        alert("Ваше сообщение успешно отправлено");
-                        // form.classList.add('no-visible');
-                    } else {
-                        alert("Ошибка отправки сообщения:" + result.message);
-                        form.classList.remove('_sending');
-                    }
-                }, 500);
+                if (result.message == "received") {
+                    // let successMess = document.getElementById('contact__form__message');
+                    // successMess.classList.remove('no-visible');
+                    form.classList.remove('_sending');
+                    form.reset();
+                    messagePopupInnerHTML += `<p>Ваше сообщение успешно отправлено</p>`;
+                    // form.classList.add('no-visible');
+                } else {
+                    messagePopupInnerHTML += `<p>Ошибка отправки сообщения: + ${result.message}</p>`;
+                    form.classList.remove('_sending');
+                }
             } else {
-                alert("Error. Message was not send.");
+                messagePopupInnerHTML += `<p>Server error: message was not send</p>`;
                 form.classList.remove('_sending');
             }
-        } else alert("Please, complete required fields for send!");
+        } else {
+            messagePopupInnerHTML += `<p>Необходимо корректно заполнить все поля формы</p>`;
+        }
+
+        messagePopupInnerHTML += `<button id = "btn__close-message" class="btn btn-primary btn-articles btn__close btn-dark">Закрыть</button></div>`;
+        messagePopup.innerHTML = messagePopupInnerHTML;
+        mainBox.appendChild(messagePopup);
+
+        document.querySelector('#btn__close-message').addEventListener('click', () => {
+            messagePopup.remove();
+        })
     }
 
     function formValidate(form) {
