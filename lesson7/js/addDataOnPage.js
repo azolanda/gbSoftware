@@ -14,7 +14,7 @@ async function getData(dataArticlesField) {
 }
 
 function renderData(dataForRender, elementForDataRender) {
-    // console.log(dataForRender);
+    console.log(dataForRender);
     if (dataForRender.info === undefined || dataForRender.info.length == 0) {
         elementForDataRender.innerHTML = "<p>К сожалению, информация не найдена...</p>";
     } else {

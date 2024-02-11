@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-let data, searchData;
+let data, searchValue, searchData;
 
 app.use(express.static('./'));
 app.use(express.json());
@@ -16,7 +16,7 @@ const con = mysql.createConnection({
   database: "web_app_db"
 });
 
-con.query("SELECT * FROM web_app_db.about_cats",
+con.query("SELECT * FROM sql6682960.about_cats",
   function (err, results, fields) {
     // console.log(err);
     // console.log(results[0].name); // собственно данные
@@ -46,49 +46,54 @@ app.get('/info/:dynamic', (req, res) => {
 
 // ====================FOR SEARCH=========================
 // POST
+const getDataFromDB = (searchValueStr) => {
+  console.log("inDB================" + searchValueStr);
+  return new Promise((resolve, reject) => {
+    con.query("SELECT * FROM sql6682960.about_cats WHERE `name` LIKE ? OR `about` LIKE ?", [`%${searchValueStr}%`, `%${searchValueStr}%`],
+      function (err, results, fields) {
+        console.log(err);
+        // console.log(`SELECT * FROM web_app_db.about_cats WHERE name LIKE '%${searchValue}%' OR about LIKE '%${searchValue}%'`);
+        // console.log(results[0].name); // собственно данные
+        // =========================================
+        searchData = results;
+        resolve(results);
+        console.log("from db=========================== " + results[0].name, results.length);
+        // console.log(fields); // мета-данные полей 
+      });
+  })
+}
+
 app.post('/', (req, res) => {
-  const {
-    searchValue
-  } = req.body;
-  // searchValue = parcel;
-  // console.log(typeof searchValue);
+  searchValue = req.body.searchValue;
+
   if (!searchValue) {
     return res.status(400).send({
       status: 'failed'
     });
   }
 
-  con.query("SELECT * FROM web_app_db.about_cats WHERE `name` LIKE ? OR `about` LIKE ?", [`%${searchValue}%`, `%${searchValue}%`],
-    function (err, results, fields) {
-      console.log(err);
-      // console.log(`SELECT * FROM web_app_db.about_cats WHERE name LIKE '%${searchValue}%' OR about LIKE '%${searchValue}%'`);
-      // console.log(results[0].name); // собственно данные
-      // -------------------------------
-      // for (let i = 0; i < results.length; i++) {
-      //   console.log(results[i]);
+  console.log("from post=========================== " + searchValue);
 
-      // }
-      // -------------------------------
-      // data = results[0].name;
-      // =========================================
-      searchData = results;
-      // console.log(fields); // мета-данные полей 
-    });
   res.status(200).send({
     status: 'received'
   });
 });
 
 app.get('/search/:dynamic', (req, res) => {
+  console.log("внутри get========================");
   const {
     dynamic
   } = req.params;
   const {
     key
   } = req.query;
-  // console.log(dynamic, key);
-  res.status(200).json({
-    info: searchData
+
+  getDataFromDB(searchValue).then((result) => {
+    searchData = result;
+
+    res.status(200).json({
+      info: searchData
+    });
   });
 });
 
