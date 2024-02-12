@@ -8,12 +8,13 @@ app.use(express.json());
 
 const mysql = require('mysql');
 // import mysql from "mysql";
+const dbConfig = require("./config/db.config.js");
 
 const con = mysql.createConnection({
-  host: "localhost",
-  user: "sqluser",
-  password: "password",
-  database: "web_app_db"
+  host: dbConfig.HOST,
+  user: dbConfig.USER,
+  password: dbConfig.PASSWORD,
+  database: dbConfig.DB
 });
 
 con.query("SELECT * FROM sql6682960.about_cats",
@@ -164,29 +165,30 @@ app.post('/sendmail', upload.none(), (req, res) => {
 
 // ====================SEND MAIL FUNCTION=========================
 const nodemailer = require('nodemailer');
+const mailConfig = require("./config/mail.config.js");
 
 async function sendEmail() {
   // Create a transporter object using the default SMTP transport
   // let testEmailAccount = await nodemailer.createTestAccount();
   let transporter = nodemailer.createTransport({
     // host: 'smtp.ethereal.email',
-    host: 'smtp.mail.ru',
-    service: 'mail',
-    port: 465,
+    host: mailConfig.HOST,
+    service: mailConfig.SERVICE,
+    port: mailConfig.PORT,
     // port: 587,
     secure: true, // enforcing secure transfer
     auth: {
       // user: testEmailAccount.user,
       // pass: testEmailAccount.pass,
-      user: user_login,
-      pass: user_pass,
+      user: mailConfig.USER,
+      pass: mailConfig.PASSWORD,
     }
   });
 
   // Set up email data
   let mailOptions = {
-    from: user_login,
-    to: destination_mail,
+    from: mailConfig.USER,
+    to: mailConfig.RECEIVER,
     subject: 'сообщение из приложения CatsRoom',
     text: `Имя пользователя: ${formDataFields.name} \ne-mail: ${formDataFields.email} \nКомментарий: ${formDataFields.comments} \nСогласие на обработку персональных данных: ${formDataFields.check}`
   };
